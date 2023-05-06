@@ -10,6 +10,7 @@ todosPares([1, 2, 3, 4]); // false
 todosPares([2, 6, 8, 12]); // true
 */
 
+// v1
 function allPairs(arrayOfNumbers) {
   for (let i = 0; i < arrayOfNumbers.length; i++) {
     if (arrayOfNumbers[i] % 2 !== 0) {
@@ -20,6 +21,7 @@ function allPairs(arrayOfNumbers) {
   return true;
 }
 
+// v2
 function allPairs(arrayOfNumbers) {
   return arrayOfNumbers.every((number) => number % 2 === 0);
 }
