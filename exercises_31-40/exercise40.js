@@ -7,29 +7,34 @@ romanoAEntero("XVIII")   // 18
 romanoAEntero("CXX")     // 120
 */
 
-const romanCharacters = [
-  { romanValue: "M", decimalValue: 1000 },
-  { romanValue: "CM", decimalValue: 900 },
-  { romanValue: "D", decimalValue: 500 },
-  { romanValue: "CD", decimalValue: 400 },
-  { romanValue: "C", decimalValue: 100 },
-  { romanValue: "XC", decimalValue: 90 },
-  { romanValue: "L", decimalValue: 50 },
-  { romanValue: "XL", decimalValue: 40 },
-  { romanValue: "X", decimalValue: 10 },
-  { romanValue: "IX", decimalValue: 9 },
-  { romanValue: "V", decimalValue: 5 },
-  { romanValue: "IV", decimalValue: 4 },
-  { romanValue: "I", decimalValue: 1 },
-];
+const romanCharacters = {
+  M: 1000,
+  CM: 900,
+  D: 500,
+  CD: 400,
+  C: 100,
+  XC: 90,
+  L: 50,
+  XL: 40,
+  X: 10,
+  IX: 9,
+  V: 5,
+  IV: 4,
+  I: 1,
+};
 
 const romanToInt = (romanNumber) => {
   let aux = 0;
 
   for (let i = 0; i < romanNumber.length; i++) {
-    aux += romanCharacters.find(
-      (element) => element.romanValue === romanNumber[i]
-    ).decimalValue;
+    if (
+      i === romanNumber.length - 1 ||
+      romanCharacters[romanNumber[i + 1]] <= romanCharacters[romanNumber[i]]
+    ) {
+      aux += romanCharacters[romanNumber[i]];
+    } else {
+      aux -= romanCharacters[romanNumber[i]];
+    }
   }
 
   return aux;
@@ -37,3 +42,4 @@ const romanToInt = (romanNumber) => {
 
 console.log(romanToInt("XVIII")); // 18
 console.log(romanToInt("CXX")); // 120
+console.log(romanToInt("IX")); // 9
